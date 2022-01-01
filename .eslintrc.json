@@ -1,0 +1,95 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true,
+    "jest/globals": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "eslint:recommended"
+  ],
+  "plugins": [
+    "import",
+    "@typescript-eslint",
+    "jest"
+  ],
+  "rules": {
+    "indent": "off",
+    "no-console": "error",
+    "no-undef": "error",
+    "semi": [
+      "error",
+      "always"
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always-and-inside-groups"
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-expect-error": "allow-with-description"
+      }
+    ],
+    "no-multi-spaces": [
+      "error"
+    ],
+    "no-mixed-spaces-and-tabs": [
+      "error"
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 0,
+        "maxBOF": 0
+      }
+    ],
+    "no-trailing-spaces": [
+      "error"
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".ts"
+        ]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ]
+    }
+  ]
+}
