@@ -1,27 +1,24 @@
-import IORedis, { Redis } from "ioredis";
-
 import InstanceManager from "../@types/instance-manager";
+import RedisManager from "../redis/manager";
+
+import { WorkerHandler } from "./handler";
 
 export default class WorkerManager extends InstanceManager {
   protected static instances: {
-    [key: string]: Redis;
+    [key: string]: typeof WorkerHandler;
   };
 
   public static add(
     queues: {
-      instance: string;
-      host: string;
-      port: string | number;
+      queueName: string;
+      redisName: string;
+      handler: typeof WorkerHandler;
+      redis: typeof RedisManager;
     }[]
   ) {
     WorkerManager.instances = queues.reduce(
-      (object: any, { instance, host, port }) => {
-        object[instance] = new IORedis({
-          host,
-          port: +port,
-          maxRetriesPerRequest: 0,
-          enableReadyCheck: false,
-        });
+      (object: any, { queueName, handler, redis, redisName }) => {
+        object[queueName] = new handler(queueName, redis.get(redisName));
 
         return object;
       },
