@@ -10,13 +10,13 @@ export default class KafkaManager extends InstanceManager {
   };
 
   public static add(
-    sockets: {
+    kafka: {
       instance: string;
       clientId: string;
       brokers: string[];
     }[]
   ) {
-    KafkaManager.instances = sockets.reduce(
+    KafkaManager.instances = kafka.reduce(
       (object: any, { clientId, brokers, instance }) => {
         object[instance] = KafkaConnector.getInstance(clientId, brokers);
         return object;
