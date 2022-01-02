@@ -5,20 +5,19 @@ import { WorkerHandler } from "./handler";
 
 export default class WorkerManager extends InstanceManager {
   protected static instances: {
-    [key: string]: typeof WorkerHandler;
+    [key: string]: WorkerHandler<unknown>;
   };
 
   public static add(
     queues: {
       queueName: string;
       redisName: string;
-      handler: typeof WorkerHandler;
       redis: typeof RedisManager;
     }[]
   ) {
     WorkerManager.instances = queues.reduce(
-      (object: any, { queueName, handler, redis, redisName }) => {
-        object[queueName] = new handler(queueName, redis.get(redisName));
+      (object: any, { queueName, redis, redisName }) => {
+        object[queueName] = new WorkerHandler(queueName, redis.get(redisName));
 
         return object;
       },

@@ -1,5 +1,5 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.13",
   "name": "fishing-tools",
   "main": "dist/app/index.js",
   "files": ["dist/**/*", "package.json"],
