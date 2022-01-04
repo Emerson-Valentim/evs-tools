@@ -1,10 +1,12 @@
 import { JobsOptions, Queue } from "bullmq";
 import { Redis } from "ioredis";
 
+import { WorkerInstance } from "./@types/worker-instance";
+
 export class WorkerHandler<JobPayload> {
   private connection: Redis;
   private queueName: string;
-  private queue: Queue;
+  private queue: WorkerInstance;
 
   constructor(queueName: string, connection: Redis) {
     this.queueName = queueName;

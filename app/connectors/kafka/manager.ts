@@ -2,8 +2,6 @@ import InstanceManager from "../@types/instance-manager";
 
 import { KafkaInstance } from "./@types/kafka-instance";
 
-import KafkaConnector from "./connector";
-
 export default class KafkaManager extends InstanceManager {
   protected static instances: {
     [key: string]: KafkaInstance;
@@ -18,7 +16,10 @@ export default class KafkaManager extends InstanceManager {
   ) {
     KafkaManager.instances = kafka.reduce(
       (object: any, { clientId, brokers, instance }) => {
-        object[instance] = KafkaConnector.getInstance(clientId, brokers);
+        object[instance] = new KafkaInstance({
+          clientId,
+          brokers,
+        });
         return object;
       },
       {}

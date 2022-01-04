@@ -1,8 +1,8 @@
+import { io } from "socket.io-client";
+
 import InstanceManager from "../@types/instance-manager";
 
 import { SocketInstance } from "./@types/socket-instance";
-
-import SocketConnector from "./connector";
 
 export default class SocketManager extends InstanceManager {
   protected static instances: {
@@ -17,7 +17,7 @@ export default class SocketManager extends InstanceManager {
   ) {
     SocketManager.instances = sockets.reduce(
       (object: any, { host, instance }) => {
-        object[instance] = SocketConnector.getInstance(host);
+        object[instance] = io(host);
         return object;
       },
       {}

@@ -1,10 +1,12 @@
-import IORedis, { Redis } from "ioredis";
+import IORedis from "ioredis";
 
 import InstanceManager from "../@types/instance-manager";
 
+import { RedisInstance } from "./@types/redis-instance";
+
 export default class RedisManager extends InstanceManager {
   protected static instances: {
-    [key: string]: Redis;
+    [key: string]: RedisInstance;
   };
 
   public static add(
