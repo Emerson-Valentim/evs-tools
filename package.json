@@ -1,6 +1,6 @@
 {
-  "version": "0.0.16",
-  "name": "fishing-tools",
+  "version": "0.0.1",
+  "name": "evs-tools",
   "main": "dist/app/index.js",
   "files": ["dist/**/*", "package.json"],
   "scripts": {
