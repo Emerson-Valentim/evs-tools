@@ -19,6 +19,7 @@ export default class KafkaManager extends InstanceManager {
         object[instance] = new KafkaInstance({
           clientId,
           brokers,
+          ssl: true
         });
         return object;
       },
